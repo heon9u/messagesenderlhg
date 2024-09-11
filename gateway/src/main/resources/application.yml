@@ -1,0 +1,84 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: message
+          uri: http://localhost:8082
+          predicates:
+            - Path=/messages/**, 
+        - id: validate message
+          uri: http://localhost:8083
+          predicates:
+            - Path=/validators/**, 
+        - id: device
+          uri: http://localhost:8084
+          predicates:
+            - Path=/devices/**, 
+        - id: dashboard
+          uri: http://localhost:8085
+          predicates:
+            - Path=, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: message
+          uri: http://message:8080
+          predicates:
+            - Path=/messages/**, 
+        - id: validate message
+          uri: http://validateMessage:8080
+          predicates:
+            - Path=/validators/**, 
+        - id: device
+          uri: http://device:8080
+          predicates:
+            - Path=/devices/**, 
+        - id: dashboard
+          uri: http://dashboard:8080
+          predicates:
+            - Path=, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

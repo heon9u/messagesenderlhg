@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: validate message
+  labels:
+    app: validate message
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: validate message
