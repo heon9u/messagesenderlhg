@@ -31,6 +31,8 @@ public class Device {
 
     private String description;
 
+    private String result;
+
     // @PostPersist
     // public void onPostPersist() {
     //     SendSucceed sendSucceed = new SendSucceed(this);
@@ -81,11 +83,13 @@ public class Device {
     public static void sendCancel(Canceled canceled) {
         //implement business logic here:
 
-        Device device = repository.findById(canceled.getId());
-        device.setResult("CANCEL");
+        repository().findById(canceled.getId()).ifPresent(device-> {
+            
+            device.setResult("CANCEL");
+            repository().save(device);
 
-        repository().save(device);
 
+         });
     }
     //>>> Clean Arch / Port Method
 
