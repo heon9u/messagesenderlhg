@@ -9,15 +9,15 @@ import messagesenderlhg.infra.AbstractEvent;
 //<<< DDD / Domain Event
 @Data
 @ToString
-public class SendSuccess extends AbstractEvent {
+public class SendSucceed extends AbstractEvent {
 
     private Long id;
 
-    public SendSuccess(Device aggregate) {
+    public SentSuccess(Message aggregate) {
         super(aggregate);
     }
 
-    public SendSuccess() {
+    public SentSuccess() {
         super();
     }
 }

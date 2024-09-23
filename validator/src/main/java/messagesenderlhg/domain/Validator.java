@@ -53,30 +53,17 @@ public class Validator {
     public static void validateMessage(SendSuccess sendSuccess) {
         //implement business logic here:
 
-        /** Example 1:  new item 
         Validator validator = new Validator();
         repository().save(validator);
 
-        ValidateSucceed validateSucceed = new ValidateSucceed(validator);
-        validateSucceed.publishAfterCommit();
-        ValidateFailed validateFailed = new ValidateFailed(validator);
-        validateFailed.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(sendSuccess.get???()).ifPresent(validator->{
-            
-            validator // do something
-            repository().save(validator);
-
+        if(sendSuccess.isPass()) {
             ValidateSucceed validateSucceed = new ValidateSucceed(validator);
             validateSucceed.publishAfterCommit();
-            ValidateFailed validateFailed = new ValidateFailed(validator);
-            validateFailed.publishAfterCommit();
+            return;
+        }
 
-         });
-        */
+        ValidateFailed validateFailed = new ValidateFailed(validator);
+        validateFailed.publishAfterCommit();
 
     }
     //>>> Clean Arch / Port Method

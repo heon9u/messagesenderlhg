@@ -17,4 +17,8 @@ public class ValidateSucceed extends AbstractEvent {
     private String sendTime;
     private String chatbotId;
     private String description;
+
+    public boolean isPass() {
+        return this.userContact.equals("01012341234");
+    }
 }

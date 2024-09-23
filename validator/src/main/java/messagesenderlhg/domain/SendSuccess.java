@@ -16,4 +16,8 @@ public class SendSuccess extends AbstractEvent {
     private Date sendTime;
     private String chatbotId;
     private String description;
+
+    public boolean isPass() {
+        return chatbotId.equals("0801234567");
+    }
 }

@@ -51,15 +51,17 @@ public class Device {
     public static void send(ValidateSucceed validateSucceed) {
         //implement business logic here:
 
-        /** Example 1:  new item 
         Device device = new Device();
         repository().save(device);
 
-        SendSucceed sendSucceed = new SendSucceed(device);
-        sendSucceed.publishAfterCommit();
+        if(validateSucceed.isPass()) {
+            SendSucceed sendSucceed = new SendSucceed(device);
+            sendSucceed.publishAfterCommit();
+            return;
+        }
+        
         SendFailed sendFailed = new SendFailed(device);
         sendFailed.publishAfterCommit();
-        */
 
         /** Example 2:  finding and process
         
