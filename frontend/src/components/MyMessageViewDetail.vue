@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            MyMessageHistory # {{$route.params.id }}
+            MyMessage # {{$route.params.id }}
         </v-card-title>
 
         <v-card-text>
@@ -36,7 +36,7 @@
   const axios = require('axios').default;
 
   export default {
-    name: 'MyMessageHistoryViewDetail',
+    name: 'MyMessageViewDetail',
     props: {
       value: Object,
     },
@@ -45,7 +45,7 @@
     }),
     async created() {
       var params = this.$route.params;
-      var temp = await axios.get(axios.fixUrl('/myMessageHistories/' + params.id))
+      var temp = await axios.get(axios.fixUrl('/myMessages/' + params.id))
 
       this.item = temp.data;
 

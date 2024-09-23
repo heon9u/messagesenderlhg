@@ -4,4 +4,4 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class MyMessageHistoryQuery {}
+public class MyMessageQuery {}
