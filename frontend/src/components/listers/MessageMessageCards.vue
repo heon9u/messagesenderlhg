@@ -109,6 +109,12 @@
             me.values = temp.data._embedded.messages;
             
             me.newValue = {
+                'messageId': '',
+                'userContact': '',
+                'mno': '',
+                'sendTime': '2024-09-23',
+                'chatbotId': '',
+                'description': '',
             }
         },
         methods:{

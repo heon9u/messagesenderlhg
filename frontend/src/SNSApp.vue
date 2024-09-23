@@ -49,7 +49,7 @@
                     <v-list-item
                         class="px-2"
                         key="validators"
-                        to="/validateMessages/validators"
+                        to="/validators/validators"
                         @click="changeUrl()"
                         color="primary"
                         style="font-weight:700;"
@@ -160,7 +160,7 @@ export default {
                 title: 'Validator', 
                 description: '', 
                 key: 'validators', 
-                route: '/validateMessages/validators',
+                route: '/validators/validators',
                 ImageUrl: '',
             },
             { 

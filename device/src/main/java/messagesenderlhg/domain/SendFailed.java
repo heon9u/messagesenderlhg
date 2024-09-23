@@ -12,6 +12,12 @@ import messagesenderlhg.infra.AbstractEvent;
 public class SendFailed extends AbstractEvent {
 
     private Long id;
+    private String messageId;
+    private String userContact;
+    private String mno;
+    private String sendTime;
+    private String chatbotId;
+    private String description;
 
     public SendFailed(Device aggregate) {
         super(aggregate);

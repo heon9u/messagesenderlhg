@@ -13,7 +13,7 @@ spring:
           uri: http://localhost:8082
           predicates:
             - Path=/messages/**, 
-        - id: validate message
+        - id: validator
           uri: http://localhost:8083
           predicates:
             - Path=/validators/**, 
@@ -53,8 +53,8 @@ spring:
           uri: http://message:8080
           predicates:
             - Path=/messages/**, 
-        - id: validate message
-          uri: http://validateMessage:8080
+        - id: validator
+          uri: http://validator:8080
           predicates:
             - Path=/validators/**, 
         - id: device

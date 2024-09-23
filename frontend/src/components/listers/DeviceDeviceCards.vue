@@ -109,6 +109,12 @@
             me.values = temp.data._embedded.devices;
             
             me.newValue = {
+                'messageId': '',
+                'userContact': '',
+                'mno': '',
+                'sendTime': '',
+                'chatbotId': '',
+                'description': '',
             }
         },
         methods:{

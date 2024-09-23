@@ -43,22 +43,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: validate message
+  name: validator
   labels:
-    app: validate message
+    app: validator
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: validate message
+      app: validator
   template:
     metadata:
       labels:
-        app: validate message
+        app: validator
     spec:
       containers:
-        - name: validate message
-          image: username/validate message:latest
+        - name: validator
+          image: username/validator:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -182,15 +182,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: validate message
+  name: validator
   labels:
-    app: validate message
+    app: validator
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: validate message
+    app: validator
 
 
 ---

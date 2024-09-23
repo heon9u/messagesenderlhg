@@ -5,6 +5,24 @@
         </v-card-title>
 
         <v-card-text>
+            <div>
+                <String label="MessageId" v-model="item.messageId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="UserContact" v-model="item.userContact" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Mno" v-model="item.mno" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Date label="SendTime" v-model="item.sendTime" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="ChatbotId" v-model="item.chatbotId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Description" v-model="item.description" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

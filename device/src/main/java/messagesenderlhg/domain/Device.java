@@ -7,7 +7,7 @@ import javax.persistence.*;
 import lombok.Data;
 import messagesenderlhg.DeviceApplication;
 import messagesenderlhg.domain.SendFailed;
-import messagesenderlhg.domain.SendSuccess;
+import messagesenderlhg.domain.SendSucceed;
 
 @Entity
 @Table(name = "Device_table")
@@ -19,10 +19,22 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String messageId;
+
+    private String userContact;
+
+    private String mno;
+
+    private String sendTime;
+
+    private String chatbotId;
+
+    private String description;
+
     @PostPersist
     public void onPostPersist() {
-        SendSuccess sendSuccess = new SendSuccess(this);
-        sendSuccess.publishAfterCommit();
+        SendSucceed sendSucceed = new SendSucceed(this);
+        sendSucceed.publishAfterCommit();
 
         SendFailed sendFailed = new SendFailed(this);
         sendFailed.publishAfterCommit();
@@ -36,22 +48,30 @@ public class Device {
     }
 
     //<<< Clean Arch / Port Method
-    public static void send(ValidateSuccess validateSuccess) {
+    public static void send(ValidateSucceed validateSucceed) {
         //implement business logic here:
 
         /** Example 1:  new item 
         Device device = new Device();
         repository().save(device);
 
+        SendSucceed sendSucceed = new SendSucceed(device);
+        sendSucceed.publishAfterCommit();
+        SendFailed sendFailed = new SendFailed(device);
+        sendFailed.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
         
-        repository().findById(validateSuccess.get???()).ifPresent(device->{
+        repository().findById(validateSucceed.get???()).ifPresent(device->{
             
             device // do something
             repository().save(device);
 
+            SendSucceed sendSucceed = new SendSucceed(device);
+            sendSucceed.publishAfterCommit();
+            SendFailed sendFailed = new SendFailed(device);
+            sendFailed.publishAfterCommit();
 
          });
         */
