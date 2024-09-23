@@ -21,7 +21,7 @@ cd /bin
 See the README.md files inside the each microservices directory:
 
 - message
-- validate message
+- validator
 - device
 - dashboard
 
@@ -35,15 +35,15 @@ mvn spring-boot:run
 ## Test by API
 - message
 ```
- http :8088/messages id="id" 
+ http :8088/messages id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" 
 ```
-- validate message
+- validator
 ```
- http :8088/validators id="id" 
+ http :8088/validators id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" policyInfo="policyInfo" description="description" 
 ```
 - device
 ```
- http :8088/devices id="id" 
+ http :8088/devices id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" 
 ```
 - dashboard
 ```

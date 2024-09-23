@@ -16,6 +16,12 @@
         </v-card-title >        
 
         <v-card-text>
+            <String label="MessageId" v-model="value.messageId" :editMode="editMode" :inputUI="''"/>
+            <String label="UserContact" v-model="value.userContact" :editMode="editMode" :inputUI="''"/>
+            <String label="Mno" v-model="value.mno" :editMode="editMode" :inputUI="''"/>
+            <Date label="SendTime" v-model="value.sendTime" :editMode="editMode" :inputUI="''"/>
+            <String label="ChatbotId" v-model="value.chatbotId" :editMode="editMode" :inputUI="''"/>
+            <String label="Description" v-model="value.description" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>
@@ -189,6 +195,25 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

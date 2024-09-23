@@ -8,8 +8,8 @@ Vue.use(Router);
 import MessageMessageManager from "./components/listers/MessageMessageCards"
 import MessageMessageDetail from "./components/listers/MessageMessageDetail"
 
-import ValidateMessageValidatorManager from "./components/listers/ValidateMessageValidatorCards"
-import ValidateMessageValidatorDetail from "./components/listers/ValidateMessageValidatorDetail"
+import ValidatorValidatorManager from "./components/listers/ValidatorValidatorCards"
+import ValidatorValidatorDetail from "./components/listers/ValidatorValidatorDetail"
 
 import DeviceDeviceManager from "./components/listers/DeviceDeviceCards"
 import DeviceDeviceDetail from "./components/listers/DeviceDeviceDetail"
@@ -32,14 +32,14 @@ export default new Router({
             },
 
             {
-                path: '/validateMessages/validators',
-                name: 'ValidateMessageValidatorManager',
-                component: ValidateMessageValidatorManager
+                path: '/validators/validators',
+                name: 'ValidatorValidatorManager',
+                component: ValidatorValidatorManager
             },
             {
-                path: '/validateMessages/validators/:id',
-                name: 'ValidateMessageValidatorDetail',
-                component: ValidateMessageValidatorDetail
+                path: '/validators/validators/:id',
+                name: 'ValidatorValidatorDetail',
+                component: ValidatorValidatorDetail
             },
 
             {

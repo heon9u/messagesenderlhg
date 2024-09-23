@@ -14,6 +14,24 @@
                         <v-list-item-content>
                             <v-list-item-title>
                             </v-list-item-title>
+                            <v-list-item-subtitle>
+                                MessageId :  {{item.messageId }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                UserContact :  {{item.userContact }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Mno :  {{item.mno }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                SendTime :  {{item.sendTime }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                ChatbotId :  {{item.chatbotId }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Description :  {{item.description }}
+                            </v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -65,6 +83,18 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     this.$emit('selected', obj);
                 }

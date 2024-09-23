@@ -30,7 +30,7 @@ jobs:
       - name: Build Maven Projects
         run: |
           mvn clean package -f ./message/pom.xml
-          mvn clean package -f ./validate message/pom.xml
+          mvn clean package -f ./validator/pom.xml
           mvn clean package -f ./device/pom.xml
           mvn clean package -f ./dashboard/pom.xml
 
@@ -44,15 +44,15 @@ jobs:
             ghcr.io/${{ github.repository }}/message:latest
             ghcr.io/${{ github.repository }}/message:${{ github.ref_name }}
             
-      - name: Docker Build and push for ValidateMessage
+      - name: Docker Build and push for Validator
         uses: docker/build-push-action@v4
         with:
-          context: ./validate message
+          context: ./validator
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/validate-message:latest
-            ghcr.io/${{ github.repository }}/validate-message:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/validator:latest
+            ghcr.io/${{ github.repository }}/validator:${{ github.ref_name }}
             
       - name: Docker Build and push for Device
         uses: docker/build-push-action@v4

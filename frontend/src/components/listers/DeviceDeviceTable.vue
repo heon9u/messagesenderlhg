@@ -67,6 +67,12 @@
             headers: 
                 [
                     { text: "id", value: "id" },
+                    { text: "messageId", value: "messageId" },
+                    { text: "userContact", value: "userContact" },
+                    { text: "mno", value: "mno" },
+                    { text: "sendTime", value: "sendTime" },
+                    { text: "chatbotId", value: "chatbotId" },
+                    { text: "description", value: "description" },
                 ],
             device : [],
             newValue: {},
@@ -84,6 +90,12 @@
             this.values = temp.data._embedded.devices;
 
             this.newValue = {
+                'messageId': '',
+                'userContact': '',
+                'mno': '',
+                'sendTime': '',
+                'chatbotId': '',
+                'description': '',
             }
         },
         methods: {

@@ -47,7 +47,7 @@ const pluralCaseList = []
 
 pluralCaseList.push( {plural: "messages/messages", pascal: "MessageMessage"} )
 
-pluralCaseList.push( {plural: "validateMessages/validators", pascal: "ValidateMessageValidator"} )
+pluralCaseList.push( {plural: "validators/validators", pascal: "ValidatorValidator"} )
 
 pluralCaseList.push( {plural: "devices/devices", pascal: "DeviceDevice"} )
 

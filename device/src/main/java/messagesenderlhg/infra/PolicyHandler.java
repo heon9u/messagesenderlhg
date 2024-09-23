@@ -25,14 +25,14 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='ValidateSuccess'"
+        condition = "headers['type']=='ValidateSucceed'"
     )
-    public void wheneverValidateSuccess_Send(
-        @Payload ValidateSuccess validateSuccess
+    public void wheneverValidateSucceed_Send(
+        @Payload ValidateSucceed validateSucceed
     ) {
-        ValidateSuccess event = validateSuccess;
+        ValidateSucceed event = validateSucceed;
         System.out.println(
-            "\n\n##### listener Send : " + validateSuccess + "\n\n"
+            "\n\n##### listener Send : " + validateSucceed + "\n\n"
         );
 
         // Sample Logic //
