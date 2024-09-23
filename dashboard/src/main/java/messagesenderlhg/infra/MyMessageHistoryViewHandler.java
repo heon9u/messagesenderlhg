@@ -1,27 +1,27 @@
 package messagesenderlhg.infra;
 
-import messagesenderlhg.domain.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import messagesenderlhg.config.kafka.KafkaProcessor;
+import messagesenderlhg.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class MyMessageHistoryViewHandler {
 
-//<<< DDD / CQRS
+    //<<< DDD / CQRS
     @Autowired
     private MyMessageHistoryRepository myMessageHistoryRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenValidateFailed_then_CREATE_1 (@Payload ValidateFailed validateFailed) {
+    public void whenValidateFailed_then_CREATE_1(
+        @Payload ValidateFailed validateFailed
+    ) {
         try {
-
             if (!validateFailed.validate()) return;
 
             // view 객체 생성
@@ -34,18 +34,17 @@ public class MyMessageHistoryViewHandler {
             myMessageHistory.setSendTime(validateFailed.getSendTime());
             myMessageHistory.setChatbotId(validateFailed.getChatbotId());
             myMessageHistory.setDescription(validateFailed.getDescription());
-            myMessageHistory.setResult(validate failed);
+            myMessageHistory.setResult("validate failed");
             // view 레파지 토리에 save
             myMessageHistoryRepository.save(myMessageHistory);
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @StreamListener(KafkaProcessor.INPUT)
-    public void whenSendFailed_then_CREATE_2 (@Payload SendFailed sendFailed) {
-        try {
 
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenSendFailed_then_CREATE_2(@Payload SendFailed sendFailed) {
+        try {
             if (!sendFailed.validate()) return;
 
             // view 객체 생성
@@ -58,18 +57,19 @@ public class MyMessageHistoryViewHandler {
             myMessageHistory.setSendTime(sendFailed.getSendTime());
             myMessageHistory.setChatbotId(sendFailed.getChatbotId());
             myMessageHistory.setDescription(sendFailed.getDescription());
-            myMessageHistory.setResult(send failed);
+            myMessageHistory.setResult("send failed");
             // view 레파지 토리에 save
             myMessageHistoryRepository.save(myMessageHistory);
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @StreamListener(KafkaProcessor.INPUT)
-    public void whenSendSucceed_then_CREATE_3 (@Payload SendSucceed sendSucceed) {
-        try {
 
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenSendSucceed_then_CREATE_3(
+        @Payload SendSucceed sendSucceed
+    ) {
+        try {
             if (!sendSucceed.validate()) return;
 
             // view 객체 생성
@@ -79,21 +79,17 @@ public class MyMessageHistoryViewHandler {
             myMessageHistory.setMessageId(sendSucceed.getMessageId());
             myMessageHistory.setUserContact(sendSucceed.getUserContact());
             myMessageHistory.setMno(sendSucceed.getMno());
-            myMessageHistory.setSendTime(String.valueOf(sendSucceed.getSendTime()));
+            myMessageHistory.setSendTime(
+                String.valueOf(sendSucceed.getSendTime())
+            );
             myMessageHistory.setChatbotId(sendSucceed.getChatbotId());
             myMessageHistory.setDescription(sendSucceed.getDescription());
-            myMessageHistory.setResult(send succeed);
+            myMessageHistory.setResult("send succeed");
             // view 레파지 토리에 save
             myMessageHistoryRepository.save(myMessageHistory);
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
-
-//>>> DDD / CQRS
+    //>>> DDD / CQRS
 }
-
