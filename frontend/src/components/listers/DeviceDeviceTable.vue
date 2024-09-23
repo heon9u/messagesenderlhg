@@ -73,6 +73,7 @@
                     { text: "sendTime", value: "sendTime" },
                     { text: "chatbotId", value: "chatbotId" },
                     { text: "description", value: "description" },
+                    { text: "result", value: "result" },
                 ],
             device : [],
             newValue: {},
@@ -96,6 +97,7 @@
                 'sendTime': '',
                 'chatbotId': '',
                 'description': '',
+                'result': '',
             }
         },
         methods: {

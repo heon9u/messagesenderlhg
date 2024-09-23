@@ -31,6 +31,8 @@ public class Device {
 
     private String description;
 
+    private String result;
+
     @PostPersist
     public void onPostPersist() {
         SendSucceed sendSucceed = new SendSucceed(this);
@@ -72,6 +74,30 @@ public class Device {
             sendSucceed.publishAfterCommit();
             SendFailed sendFailed = new SendFailed(device);
             sendFailed.publishAfterCommit();
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void sendCancel(Canceled canceled) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Device device = new Device();
+        repository().save(device);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(canceled.get???()).ifPresent(device->{
+            
+            device // do something
+            repository().save(device);
+
 
          });
         */

@@ -13,11 +13,11 @@ public class SendSucceed extends AbstractEvent {
 
     private Long id;
 
-    public SentSuccess(Message aggregate) {
+    public SendSucceed(Message aggregate) {
         super(aggregate);
     }
 
-    public SentSuccess() {
+    public SendSucceed() {
         super();
     }
 }

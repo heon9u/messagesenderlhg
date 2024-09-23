@@ -13,7 +13,7 @@ public class SendSuccess extends AbstractEvent {
     private String messageId;
     private String userContact;
     private String mno;
-    private Date sendTime;
+    private String sendTime;
     private String chatbotId;
     private String description;
 }

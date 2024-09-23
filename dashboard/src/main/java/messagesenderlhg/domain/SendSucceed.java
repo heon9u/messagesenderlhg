@@ -15,4 +15,5 @@ public class SendSucceed extends AbstractEvent {
     private String sendTime;
     private String chatbotId;
     private String description;
+    private String result;
 }

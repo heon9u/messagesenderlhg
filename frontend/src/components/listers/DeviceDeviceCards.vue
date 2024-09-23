@@ -115,6 +115,7 @@
                 'sendTime': '',
                 'chatbotId': '',
                 'description': '',
+                'result': '',
             }
         },
         methods:{

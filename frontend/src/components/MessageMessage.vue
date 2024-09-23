@@ -19,7 +19,7 @@
             <String label="MessageId" v-model="value.messageId" :editMode="editMode" :inputUI="''"/>
             <String label="UserContact" v-model="value.userContact" :editMode="editMode" :inputUI="''"/>
             <String label="Mno" v-model="value.mno" :editMode="editMode" :inputUI="''"/>
-            <Date label="SendTime" v-model="value.sendTime" :editMode="editMode" :inputUI="''"/>
+            <String label="SendTime" v-model="value.sendTime" :editMode="editMode" :inputUI="''"/>
             <String label="ChatbotId" v-model="value.chatbotId" :editMode="editMode" :inputUI="''"/>
             <String label="Description" v-model="value.description" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
@@ -41,6 +41,13 @@
                     @click="save"
                 >
                     Send
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
+                    @click="save"
+                >
+                    Cancel
                 </v-btn>
                 <v-btn
                     color="primary"

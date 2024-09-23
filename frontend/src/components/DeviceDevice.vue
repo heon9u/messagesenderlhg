@@ -22,6 +22,7 @@
             <String label="SendTime" v-model="value.sendTime" :editMode="editMode" :inputUI="''"/>
             <String label="ChatbotId" v-model="value.chatbotId" :editMode="editMode" :inputUI="''"/>
             <String label="Description" v-model="value.description" :editMode="editMode" :inputUI="''"/>
+            <String label="Result" v-model="value.result" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>
