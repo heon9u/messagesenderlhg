@@ -43,7 +43,7 @@ mvn spring-boot:run
 ```
 - device
 ```
- http :8088/devices id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" 
+ http :8088/devices id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" result="result" 
 ```
 - dashboard
 ```

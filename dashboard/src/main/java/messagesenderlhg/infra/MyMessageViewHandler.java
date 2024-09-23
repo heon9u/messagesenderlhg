@@ -58,6 +58,7 @@ public class MyMessageViewHandler {
             myMessage.setChatbotId(sendFailed.getChatbotId());
             myMessage.setDescription(sendFailed.getDescription());
             myMessage.setResult("send failed");
+            myMessage.setId(sendFailed.getId());
             // view 레파지 토리에 save
             myMessageRepository.save(myMessage);
         } catch (Exception e) {
@@ -85,6 +86,27 @@ public class MyMessageViewHandler {
             myMessage.setResult("send succeed");
             // view 레파지 토리에 save
             myMessageRepository.save(myMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenCanceled_then_UPDATE_1(@Payload Canceled canceled) {
+        try {
+            if (!canceled.validate()) return;
+            // view 객체 조회
+            Optional<MyMessage> myMessageOptional = myMessageRepository.findById(
+                canceled.getId()
+            );
+
+            if (myMessageOptional.isPresent()) {
+                MyMessage myMessage = myMessageOptional.get();
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                myMessage.setResult("CENCEL");
+                // view 레파지 토리에 save
+                myMessageRepository.save(myMessage);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -38,5 +38,19 @@ public class PolicyHandler {
         // Sample Logic //
         Device.send(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='Canceled'"
+    )
+    public void wheneverCanceled_SendCancel(@Payload Canceled canceled) {
+        Canceled event = canceled;
+        System.out.println(
+            "\n\n##### listener SendCancel : " + canceled + "\n\n"
+        );
+
+        // Sample Logic //
+        Device.sendCancel(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

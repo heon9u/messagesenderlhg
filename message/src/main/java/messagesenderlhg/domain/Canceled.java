@@ -9,22 +9,15 @@ import messagesenderlhg.infra.AbstractEvent;
 //<<< DDD / Domain Event
 @Data
 @ToString
-public class SendSucceed extends AbstractEvent {
+public class Canceled extends AbstractEvent {
 
     private Long id;
-    private String messageId;
-    private String userContact;
-    private String mno;
-    private String sendTime;
-    private String chatbotId;
-    private String description;
-    private String result;
 
-    public SendSucceed(Device aggregate) {
+    public Canceled(Message aggregate) {
         super(aggregate);
     }
 
-    public SendSucceed() {
+    public Canceled() {
         super();
     }
 }

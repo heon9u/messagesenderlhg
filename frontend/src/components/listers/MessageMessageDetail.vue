@@ -15,7 +15,7 @@
                 <String label="Mno" v-model="item.mno" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <Date label="SendTime" v-model="item.sendTime" :editMode="editMode" @change="change" />
+                <String label="SendTime" v-model="item.sendTime" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <String label="ChatbotId" v-model="item.chatbotId" :editMode="editMode" @change="change" />

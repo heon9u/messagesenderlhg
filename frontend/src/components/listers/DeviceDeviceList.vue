@@ -47,6 +47,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -57,6 +58,7 @@
                             [ SendTime :  {{data.sendTime }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ChatbotId :  {{data.chatbotId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Description :  {{data.description }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Result :  {{data.result }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -130,6 +132,7 @@
                 'sendTime': '',
                 'chatbotId': '',
                 'description': '',
+                'result': '',
             }
         },
         methods: {

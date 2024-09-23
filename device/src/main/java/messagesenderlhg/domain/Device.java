@@ -35,7 +35,7 @@ public class Device {
     // public void onPostPersist() {
     //     SendSucceed sendSucceed = new SendSucceed(this);
     //     sendSucceed.publishAfterCommit();
-
+    // 
     //     SendFailed sendFailed = new SendFailed(this);
     //     sendFailed.publishAfterCommit();
     // }
@@ -63,30 +63,28 @@ public class Device {
 
         if(validateSucceed.isPass()) {
             System.out.println("#### 검증 성공 ####");
+            device.setResult("send succeed");
             SendSucceed sendSucceed = new SendSucceed(device);
             sendSucceed.publishAfterCommit();
             return;
         } else {
             System.out.println("#### 검증 실패 ####");
+            device.setResult("send failed");
             SendFailed sendFailed = new SendFailed(device);
             sendFailed.publishAfterCommit();
         }
         
+    }
+    //>>> Clean Arch / Port Method
+    
+    //<<< Clean Arch / Port Method
+    public static void sendCancel(Canceled canceled) {
+        //implement business logic here:
 
-        /** Example 2:  finding and process
-        
-        repository().findById(validateSucceed.get???()).ifPresent(device->{
-            
-            device // do something
-            repository().save(device);
+        Device device = repository.findById(canceled.getId());
+        device.setResult("CANCEL");
 
-            SendSucceed sendSucceed = new SendSucceed(device);
-            sendSucceed.publishAfterCommit();
-            SendFailed sendFailed = new SendFailed(device);
-            sendFailed.publishAfterCommit();
-
-         });
-        */
+        repository().save(device);
 
     }
     //>>> Clean Arch / Port Method

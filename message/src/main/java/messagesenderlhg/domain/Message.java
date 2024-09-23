@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import messagesenderlhg.MessageApplication;
+import messagesenderlhg.domain.Canceled;
 import messagesenderlhg.domain.SendSuccess;
 
 @Entity
@@ -24,7 +25,7 @@ public class Message {
 
     private String mno;
 
-    private Date sendTime;
+    private String sendTime;
 
     private String chatbotId;
 
@@ -34,6 +35,12 @@ public class Message {
     public void onPostPersist() {
         SendSuccess sendSuccess = new SendSuccess(this);
         sendSuccess.publishAfterCommit();
+    }
+
+    @PreRemove
+    public void onPreRemove() {
+        Canceled canceled = new Canceled(this);
+        canceled.publishAfterCommit();
     }
 
     public static MessageRepository repository() {
@@ -48,6 +55,13 @@ public class Message {
 
         SendSuccess sendSuccess = new SendSuccess(this);
         sendSuccess.publishAfterCommit();
+    }
+
+    public void cancel() {
+        //implement business logic here:
+
+        Canceled canceled = new Canceled(this);
+        canceled.publishAfterCommit();
     }
 }
 //>>> DDD / Aggregate Root
