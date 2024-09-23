@@ -50,7 +50,7 @@ public class MyMessageViewHandler {
             // view 객체 생성
             MyMessage myMessage = new MyMessage();
             // view 객체에 이벤트의 Value 를 set 함
-            myMessage.setId(Long.valueOf(sendFailed.getMessageId()));
+            myMessage.setId(Long.valueOf(sendFailed.getId()));
             myMessage.setMessageId(sendFailed.getMessageId());
             myMessage.setUserContact(sendFailed.getUserContact());
             myMessage.setMno(sendFailed.getMno());

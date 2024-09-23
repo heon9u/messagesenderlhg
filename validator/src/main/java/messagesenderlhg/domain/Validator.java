@@ -33,14 +33,14 @@ public class Validator {
 
     private String description;
 
-    @PostPersist
-    public void onPostPersist() {
-        ValidateSucceed validateSucceed = new ValidateSucceed(this);
-        validateSucceed.publishAfterCommit();
+    // @PostPersist
+    // public void onPostPersist() {
+    //     ValidateSucceed validateSucceed = new ValidateSucceed(this);
+    //     validateSucceed.publishAfterCommit();
 
-        ValidateFailed validateFailed = new ValidateFailed(this);
-        validateFailed.publishAfterCommit();
-    }
+    //     ValidateFailed validateFailed = new ValidateFailed(this);
+    //     validateFailed.publishAfterCommit();
+    // }
 
     public static ValidatorRepository repository() {
         ValidatorRepository validatorRepository = ValidatorApplication.applicationContext.getBean(
@@ -54,16 +54,25 @@ public class Validator {
         //implement business logic here:
 
         Validator validator = new Validator();
+        validator.setMessageId(sendSuccess.getMessageId());
+        validator.setChatbotId(sendSuccess.getChatbotId());
+        validator.setSendTime(sendSuccess.getSendTime());
+        validator.setUserContact(sendSuccess.getUserContact());
+        validator.setDescription(sendSuccess.getDescription());
+        validator.setMno(sendSuccess.getMno());
         repository().save(validator);
 
         if(sendSuccess.isPass()) {
+            System.out.println("#### 검증 성공 ####");
             ValidateSucceed validateSucceed = new ValidateSucceed(validator);
             validateSucceed.publishAfterCommit();
             return;
-        }
 
-        ValidateFailed validateFailed = new ValidateFailed(validator);
-        validateFailed.publishAfterCommit();
+        } else {
+            System.out.println("#### 검증 실패 ####");
+            ValidateFailed validateFailed = new ValidateFailed(validator);
+            validateFailed.publishAfterCommit();
+        }
 
     }
     //>>> Clean Arch / Port Method

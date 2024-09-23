@@ -31,14 +31,14 @@ public class Device {
 
     private String description;
 
-    @PostPersist
-    public void onPostPersist() {
-        SendSucceed sendSucceed = new SendSucceed(this);
-        sendSucceed.publishAfterCommit();
+    // @PostPersist
+    // public void onPostPersist() {
+    //     SendSucceed sendSucceed = new SendSucceed(this);
+    //     sendSucceed.publishAfterCommit();
 
-        SendFailed sendFailed = new SendFailed(this);
-        sendFailed.publishAfterCommit();
-    }
+    //     SendFailed sendFailed = new SendFailed(this);
+    //     sendFailed.publishAfterCommit();
+    // }
 
     public static DeviceRepository repository() {
         DeviceRepository deviceRepository = DeviceApplication.applicationContext.getBean(
@@ -52,16 +52,26 @@ public class Device {
         //implement business logic here:
 
         Device device = new Device();
+        device.setMessageId(validateSucceed.getMessageId());
+        device.setChatbotId(validateSucceed.getChatbotId());
+        device.setMno(validateSucceed.getMno());
+        device.setDescription(validateSucceed.getDescription());
+        device.setSendTime(validateSucceed.getSendTime());
+        device.setUserContact(validateSucceed.getUserContact());
+        
         repository().save(device);
 
         if(validateSucceed.isPass()) {
+            System.out.println("#### 검증 성공 ####");
             SendSucceed sendSucceed = new SendSucceed(device);
             sendSucceed.publishAfterCommit();
             return;
+        } else {
+            System.out.println("#### 검증 실패 ####");
+            SendFailed sendFailed = new SendFailed(device);
+            sendFailed.publishAfterCommit();
         }
         
-        SendFailed sendFailed = new SendFailed(device);
-        sendFailed.publishAfterCommit();
 
         /** Example 2:  finding and process
         
