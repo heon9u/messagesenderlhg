@@ -2,7 +2,7 @@
 
     <v-data-table
         :headers="headers"
-        :items="myMessageHistory"
+        :items="myMessage"
         :items-per-page="5"
         class="elevation-1"
     ></v-data-table>
@@ -13,7 +13,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'MyMessageHistoryView',
+        name: 'MyMessageView',
         props: {
             value: Object,
             editMode: Boolean,
@@ -30,14 +30,14 @@
                 { text: "result", value: "result" },
                 { text: "description", value: "description" },
             ],
-            myMessageHistory : [],
+            myMessage : [],
         }),
           async created() {
-            var temp = await axios.get(axios.fixUrl('/myMessageHistories'))
+            var temp = await axios.get(axios.fixUrl('/myMessages'))
 
-            temp.data._embedded.myMessageHistories.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            temp.data._embedded.myMessages.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
 
-            this.myMessageHistory = temp.data._embedded.myMessageHistories;
+            this.myMessage = temp.data._embedded.myMessages;
         },
         methods: {
         }

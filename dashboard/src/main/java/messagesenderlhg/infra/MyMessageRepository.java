@@ -6,8 +6,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(
-    collectionResourceRel = "myMessageHistories",
-    path = "myMessageHistories"
+    collectionResourceRel = "myMessages",
+    path = "myMessages"
 )
-public interface MyMessageHistoryRepository
-    extends PagingAndSortingRepository<MyMessageHistory, Long> {}
+public interface MyMessageRepository
+    extends PagingAndSortingRepository<MyMessage, Long> {}
