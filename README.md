@@ -1,7 +1,7 @@
 # RCS message
 
 ## 클라우드 아키텍처 설계
-#### 클라우드 아키텍처 구성
+### 클라우드 아키텍처 구성
 
 실무에서 담당하고 있는 기업형 스마트메시지 RCS를 기반으로 클라우드 아키텍처를 설계.
 - 메시지를 보내는 주체인 message(중계)
@@ -10,7 +10,7 @@
 - 메시지 이력을 관리하는 dashboard(마이페이지)
 
 ## Data Modeling / 서비스 분리 / 설계 역량
-#### 도메인 분석 - 이벤트스토밍
+### 도메인 분석 - 이벤트스토밍
 
 1. 메시지를 전송할 때마다 검증을 진행.
 2. 검증이 완료될 때마다 메시지를 전송.
@@ -23,7 +23,7 @@ Aggregation: message / validator / device / dashboard
 
 ## MSA개발 또는 개발 관리 역량
 
-#### 분산트랜잭션 - Saga
+### 분산트랜잭션 - Saga
 
 - Kafka 기반으로 pub/sub 관계
 
@@ -37,9 +37,11 @@ cd /bin
 ![saga pattern](https://github.com/user-attachments/assets/14510971-4dd7-4c60-b608-47d370c040d0)
 
 
-#### 보상처리 - Compensation
+### 보상처리 - Compensation
 
-메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능  
+- 메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능
+- result를 "CANCEL"로 업데이트
+
 [before]  
 ![compensation_before](https://github.com/user-attachments/assets/dfe8b996-1cc7-43b6-9af8-afed6b917f72)
   
@@ -47,7 +49,7 @@ cd /bin
 ![compensation_after](https://github.com/user-attachments/assets/4a12c2b5-9814-4cf1-8db7-4330f8c3d108)
 
 
-#### 단일 진입점 - Gateway
+### 단일 진입점 - Gateway
 
 - 게이트웨이 기반으로 단일 진입점 적용.
 - 해당 단계에서는 localhost에서 테스트.
@@ -60,7 +62,7 @@ cd /bin
 ![gateway-8088](https://github.com/user-attachments/assets/5c956a30-e216-4573-bd29-3ac7cfb25fb3)
 
 
-#### 분산 데이터 프로젝션 - CQRS
+### 분산 데이터 프로젝션 - CQRS
 
 - Create / Delete와 조회 역할을 나눠 부하 분산
 
@@ -70,7 +72,7 @@ cd /bin
 
 ## 컨테이너 인프라 설계 및 구성
 
-#### 컨테이너 자동확장 - HPA
+### 컨테이너 자동확장 - HPA
 
 - 컨테이너에 autoscale 적용 (cpu percent: 10)
 - siege를 통해 부하를 발생했을 때, cpu에 따른 pod 갯수를 확인
@@ -86,7 +88,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 ![hpa_pod](https://github.com/user-attachments/assets/c22660e8-0dd5-4a60-ac0a-05c10762e1a3)
 
 
-#### 컨테이너로부터 환경분리 - ConfigMap
+### 컨테이너로부터 환경분리 - ConfigMap
 
 - 컨테이너에 configMap 기반으로 환경변수를 부여
 - Pod spec에 마운트
@@ -102,7 +104,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 ![env_result](https://github.com/user-attachments/assets/aac1f9bc-0385-43e1-be98-1ae3289762ca)
 
 
-#### 클라우드스토리지 활용 - PVC
+### 클라우드스토리지 활용 - PVC
 
 - PV, PVC 기반으로 클라우드 스토리지 활용.
 - PVC를 선언하고, pod spec에 마운팅.
@@ -120,16 +122,16 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 ![pvc result](https://github.com/user-attachments/assets/279bd7fd-5f4c-4430-b0b8-951e2a67b176)
 
 
-#### 셀프 힐링 / 무정지배포 - Readiness Probe
+### 셀프 힐링 / 무정지배포 - Readiness Probe
 
 
-#### 서비스 메쉬 응용 - Mesh
+### 서비스 메쉬 응용 - Mesh
 
 
-#### 통합 모니터링 - Monitoring
+### 통합 모니터링 - Monitoring
 
 
 ## github webhook을 이용한 CI/CD
-#### VM기반 AKS, ACR을 활용한 Jenkins pipeline
+### VM기반 AKS, ACR을 활용한 Jenkins pipeline
 
 
