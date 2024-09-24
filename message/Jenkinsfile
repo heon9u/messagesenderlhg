@@ -21,8 +21,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 withMaven(maven: 'Maven') {
-                    sh 'cd message'
-                    sh 'mvn package -DskipTests'
+                    sh 'mvn package -f /message/pom.xml -DskipTests'
                 }
             }
         }
