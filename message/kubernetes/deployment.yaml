@@ -21,7 +21,7 @@ spec:
           claimName: azurefile
       containers:
         - name: message
-          image: "user22.azurecr.io/message:v1"
+          image: "user22.azurecr.io/message:latest"
           ports:
             - containerPort: 8080
           env:
