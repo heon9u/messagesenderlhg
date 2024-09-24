@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: message
+        sidecar.istio.io/inject: "true"
     spec:
       volumes:
       - name: volume

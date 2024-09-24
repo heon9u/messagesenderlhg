@@ -1,0 +1,16 @@
+  apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    name: vs-message-network-rule
+  spec:
+    hosts:
+    - message
+    http:
+    - route:
+      - destination:
+          host: message
+      timeout: 4s
+      retries:
+        attempts: 5
+        perTryTimeout: 3s
+        retryOn: 5xx,retriable-4xx,gateway-error,connect-failure,refused-stream
