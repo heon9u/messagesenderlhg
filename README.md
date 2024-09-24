@@ -9,13 +9,13 @@
 - 메시지 전송을 확인하는 device(삼성)
 - 메시지 이력을 관리하는 dashboard(마이페이지)
 
+## Data Modeling / 서비스 분리 / 설계 역량
+#### 도메인 분석 - 이벤트스토밍
+
 1. 메시지를 전송할 때마다 검증을 진행.
 2. 검증이 완료될 때마다 메시지를 전송.
 3. 메시지를 전송 혹은 실패할 때마다 이력에 저장.
 4. 전송한 메시지를 취소하는 기능.
-
-## Data Modeling / 서비스 분리 / 설계 역량
-#### 도메인 분석 - 이벤트스토밍
 
 Aggregation: message / validator / device / dashboard
 ![RCS_Event Storming](https://github.com/user-attachments/assets/b8fcb83d-2e9a-4340-b773-0b230f6cd10a)
@@ -39,10 +39,10 @@ cd /bin
 
 #### 보상처리 - Compensation
 
-메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능
+메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능\n
 [before]
 ![compensation_before](https://github.com/user-attachments/assets/dfe8b996-1cc7-43b6-9af8-afed6b917f72)
-
+\n
 [after]
 ![compensation_after](https://github.com/user-attachments/assets/4a12c2b5-9814-4cf1-8db7-4330f8c3d108)
 
@@ -55,7 +55,7 @@ cd /bin
 
 [message - 8082]
 ![gateway-8082](https://github.com/user-attachments/assets/f569a72a-433e-4ce0-9e86-8e6517a7d85e)
-
+\n
 [gateway - 8088]
 ![gateway-8088](https://github.com/user-attachments/assets/5c956a30-e216-4573-bd29-3ac7cfb25fb3)
 
