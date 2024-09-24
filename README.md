@@ -183,7 +183,7 @@ sidecar.istio.io/inject=true
 - github에서 commit발생 시, webhook을 통해 자동으로 파이프라인 빌드
 - message domain만 CI/CD를 진행하기 때문에 JenkinsFile, Dockerfile 수정
 
-[구축한 VM]
+[구축한 VM]  
 ![vm](https://github.com/user-attachments/assets/c38f2a32-2b70-43ce-b262-59c1bd903931)
 
 ```
