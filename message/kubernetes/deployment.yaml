@@ -14,11 +14,24 @@ spec:
       labels:
         app: message
     spec:
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azurefile
       containers:
         - name: message
           image: "user22.azurecr.io/message:v1"
           ports:
             - containerPort: 8080
+          env:
+          - name: ORDER_LOG_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: ORDER_LOG_LEVEL
+          volumeMounts:
+          - mountPath: "/mnt/data"
+            name: volume
           readinessProbe:
             httpGet:
               path: '/actuator/health'
