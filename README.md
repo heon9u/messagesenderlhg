@@ -76,6 +76,7 @@ cd /bin
 
 - 컨테이너에 autoscale 적용 (cpu percent: 10)
 - siege를 통해 부하를 발생했을 때, cpu에 따른 pod 갯수를 확인
+- 이때, pod spec에 resources 적용 (CPU: 200m)
 
 ```
 kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
@@ -86,6 +87,9 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
   
 [replicas가 증가한 pod]  
 ![hpa_pod](https://github.com/user-attachments/assets/c22660e8-0dd5-4a60-ac0a-05c10762e1a3)
+  
+[siege를 통한 워크로도 전체 성공]  
+![siege_message_hpa](https://github.com/user-attachments/assets/f3f7c404-72b0-480a-928e-277a21938fbe)
 
 
 ### 컨테이너로부터 환경분리 - ConfigMap
@@ -124,14 +128,90 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 
 ### 셀프 힐링 / 무정지배포 - Readiness Probe
 
+- 배포하는 사이에도 요청을 처리할 수 있도록 변경
+- siege를 기반으로 부하 발생
+- Pod spec에서 readinessProbe 적용
+
+[Probe 설정하기 전, 재배포]  
+![readinessProbe_before](https://github.com/user-attachments/assets/3f891117-1ef7-48a9-b29b-2789f5d58dc0)
+  
+[Probe 설정 후, 재배포]  
+![readinessProbe_after](https://github.com/user-attachments/assets/b45fb2b3-0354-467b-b23d-9d54241e604f)
+  
+[Probe 설정]  
+![readinessProbe설정](https://github.com/user-attachments/assets/718bc230-45e5-498b-b8b4-938ab3c43f59)
+
 
 ### 서비스 메쉬 응용 - Mesh
+
+- istio / Sidecar / VirtualService 기반으로 서비스 메쉬 구현
+- siege를 통해 임의로 500 error를 발생
+- Sidecar에서 retry를 하도록 설정
+- Tracing Server인 Jaeger에서 retry 확인
+
+```
+sidecar.istio.io/inject=true
+```
+
+[istio 설치]  
+![istio install](https://github.com/user-attachments/assets/e7a0a161-ff8d-4829-8668-757e1b716436)
+  
+[message / siege에 Sidecar 적용]  
+![istio_sidecar](https://github.com/user-attachments/assets/d775a357-5f8d-4038-831c-dd4550948e5c)
+  
+[500 error]  
+![istio_siege_500error](https://github.com/user-attachments/assets/d2623564-aabe-463a-aafc-413a4a1de0cb)
+  
+[Jaeger에서 확인]  
+![istio_retry](https://github.com/user-attachments/assets/8430d935-4584-4434-bb6f-8ceca29dc402)
 
 
 ### 통합 모니터링 - Monitoring
 
+- 모니터링은 Grafana를 활용
+- Siege를 통한 부하량을 Grafana의 그래프를 통해 확인
+
+[Grafana 그래프]  
+![monitoring_grafana](https://github.com/user-attachments/assets/352b02c5-de5e-4672-95be-9381b4dad635)
+
+
 
 ## github webhook을 이용한 CI/CD
 ### VM기반 AKS, ACR을 활용한 Jenkins pipeline
+
+- Azure의 VM에서 환경 설정 및 Jenkins 설치
+- github에서 commit발생 시, webhook을 통해 자동으로 파이프라인 빌드
+- message domain만 CI/CD를 진행하기 때문에 JenkinsFile, Dockerfile 수정
+
+[구축한 VM]
+![vm](https://github.com/user-attachments/assets/c38f2a32-2b70-43ce-b262-59c1bd903931)
+
+```
+stage('Maven Build') {
+    steps {
+        withMaven(maven: 'Maven') {
+            sh 'mvn package -f message/pom.xml -DskipTests'
+        }
+    }
+}
+
+stage('Docker Build') {
+    steps {
+        script {
+            image = docker.build("${REGISTRY}/${IMAGE_NAME}:v${env.BUILD_NUMBER}", "-f message/Dockerfile .")
+        }
+    }
+}
+```
+[Started by Github push by heon9u]  
+![cicd jenkins](https://github.com/user-attachments/assets/b87e2ce5-ef01-46c0-a351-33449a241c16)
+  
+[image tag]  
+![cicd docker build](https://github.com/user-attachments/assets/9626595b-e98a-4cdd-adae-a2ed43c68838)
+  
+[acr에서 확인한 image tag]  
+![cicd azure](https://github.com/user-attachments/assets/b9dd0477-0656-4804-894c-97fb3c9f8fb4)
+
+
 
 
