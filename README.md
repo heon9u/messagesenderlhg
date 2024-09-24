@@ -86,7 +86,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 [replicas가 증가한 pod]  
 ![hpa_pod](https://github.com/user-attachments/assets/c22660e8-0dd5-4a60-ac0a-05c10762e1a3)
   
-[siege를 통한 워크로도 전체 성공]  
+[siege를 통한 요청 전체 성공]  
 ![siege_message_hpa](https://github.com/user-attachments/assets/f3f7c404-72b0-480a-928e-277a21938fbe)
 
   
