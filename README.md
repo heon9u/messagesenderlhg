@@ -8,7 +8,7 @@
 - 메시지를 검증하는 validator(홀세일)
 - 메시지 전송을 확인하는 device(삼성)
 - 메시지 이력을 관리하는 dashboard(마이페이지)
-
+  
 ## Data Modeling / 서비스 분리 / 설계 역량
 ### 도메인 분석 - 이벤트스토밍
 
@@ -20,7 +20,7 @@
 Aggregation: message / validator / device / dashboard
 ![RCS_Event Storming](https://github.com/user-attachments/assets/b8fcb83d-2e9a-4340-b773-0b230f6cd10a)
 
-
+  
 ## MSA개발 또는 개발 관리 역량
 
 ### 분산트랜잭션 - Saga
@@ -35,8 +35,7 @@ cd /bin
 ```
 
 ![saga pattern](https://github.com/user-attachments/assets/14510971-4dd7-4c60-b608-47d370c040d0)
-
-
+  
 ### 보상처리 - Compensation
 
 - 메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능
@@ -48,7 +47,7 @@ cd /bin
 [after]  
 ![compensation_after](https://github.com/user-attachments/assets/4a12c2b5-9814-4cf1-8db7-4330f8c3d108)
 
-
+  
 ### 단일 진입점 - Gateway
 
 - 게이트웨이 기반으로 단일 진입점 적용.
@@ -61,7 +60,7 @@ cd /bin
 [gateway - 8088]  
 ![gateway-8088](https://github.com/user-attachments/assets/5c956a30-e216-4573-bd29-3ac7cfb25fb3)
 
-
+  
 ### 분산 데이터 프로젝션 - CQRS
 
 - Create / Delete와 조회 역할을 나눠 부하 분산
@@ -69,9 +68,8 @@ cd /bin
 [myMessages - 8085]  
 ![CQRS](https://github.com/user-attachments/assets/793a3949-1697-40ad-986a-e66157f1de74)
 
-
+  
 ## 컨테이너 인프라 설계 및 구성
-
 ### 컨테이너 자동확장 - HPA
 
 - 컨테이너에 autoscale 적용 (cpu percent: 10)
@@ -91,7 +89,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 [siege를 통한 워크로도 전체 성공]  
 ![siege_message_hpa](https://github.com/user-attachments/assets/f3f7c404-72b0-480a-928e-277a21938fbe)
 
-
+  
 ### 컨테이너로부터 환경분리 - ConfigMap
 
 - 컨테이너에 configMap 기반으로 환경변수를 부여
@@ -107,7 +105,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 [Pod 터미널에서 env 확인]  
 ![env_result](https://github.com/user-attachments/assets/aac1f9bc-0385-43e1-be98-1ae3289762ca)
 
-
+  
 ### 클라우드스토리지 활용 - PVC
 
 - PV, PVC 기반으로 클라우드 스토리지 활용.
@@ -125,7 +123,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 [확보된 스토리지]  
 ![pvc result](https://github.com/user-attachments/assets/279bd7fd-5f4c-4430-b0b8-951e2a67b176)
 
-
+  
 ### 셀프 힐링 / 무정지배포 - Readiness Probe
 
 - 배포하는 사이에도 요청을 처리할 수 있도록 변경
@@ -141,7 +139,7 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 [Probe 설정]  
 ![readinessProbe설정](https://github.com/user-attachments/assets/718bc230-45e5-498b-b8b4-938ab3c43f59)
 
-
+  
 ### 서비스 메쉬 응용 - Mesh
 
 - istio / Sidecar / VirtualService 기반으로 서비스 메쉬 구현
@@ -172,7 +170,7 @@ sidecar.istio.io/inject=true
 [Jaeger에서 확인]  
 ![istio_retry](https://github.com/user-attachments/assets/8430d935-4584-4434-bb6f-8ceca29dc402)
 
-
+  
 ### 통합 모니터링 - Monitoring
 
 - 모니터링은 Grafana를 활용
@@ -181,8 +179,7 @@ sidecar.istio.io/inject=true
 [Grafana 그래프]  
 ![monitoring_grafana](https://github.com/user-attachments/assets/352b02c5-de5e-4672-95be-9381b4dad635)
 
-
-
+  
 ## github webhook을 이용한 CI/CD
 ### VM기반 AKS, ACR을 활용한 Jenkins pipeline
 
