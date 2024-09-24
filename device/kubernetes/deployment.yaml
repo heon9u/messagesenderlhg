@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: device
-          image: "leeheongyu.azurecr.io/device:v1"
+          image: "user22.azurecr.io/device:v1"
           ports:
             - containerPort: 8080
           readinessProbe:

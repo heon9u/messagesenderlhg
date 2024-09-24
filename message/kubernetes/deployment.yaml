@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: message
-          image: "leeheongyu.azurecr.io/message:v1"
+          image: "user22.azurecr.io/message:v1"
           ports:
             - containerPort: 8080
           readinessProbe:

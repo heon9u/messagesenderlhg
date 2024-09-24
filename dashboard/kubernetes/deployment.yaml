@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dashboard
-          image: "leeheongyu.azurecr.io/dashboard:v1"
+          image: "user22.azurecr.io/dashboard:v1"
           ports:
             - containerPort: 8080
           readinessProbe:

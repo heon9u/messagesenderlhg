@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: validator
-          image: "leeheongyu.azurecr.io/validator:v1"
+          image: "user22.azurecr.io/validator:v1"
           ports:
             - containerPort: 8080
           readinessProbe:
