@@ -40,10 +40,10 @@ cd /bin
 #### 보상처리 - Compensation
 
 메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능  
-[before]
+[before]  
 ![compensation_before](https://github.com/user-attachments/assets/dfe8b996-1cc7-43b6-9af8-afed6b917f72)
   
-[after]
+[after]  
 ![compensation_after](https://github.com/user-attachments/assets/4a12c2b5-9814-4cf1-8db7-4330f8c3d108)
 
 
@@ -53,10 +53,10 @@ cd /bin
 - 해당 단계에서는 localhost에서 테스트.
 - 요청 port는 다르지만, 결과는 동일.
 
-[message - 8082]
+[message - 8082]  
 ![gateway-8082](https://github.com/user-attachments/assets/f569a72a-433e-4ce0-9e86-8e6517a7d85e)
   
-[gateway - 8088]
+[gateway - 8088]  
 ![gateway-8088](https://github.com/user-attachments/assets/5c956a30-e216-4573-bd29-3ac7cfb25fb3)
 
 
@@ -64,20 +64,60 @@ cd /bin
 
 - Create / Delete와 조회 역할을 나눠 부하 분산
 
-[myMessages - 8085]
+[myMessages - 8085]  
 ![CQRS](https://github.com/user-attachments/assets/793a3949-1697-40ad-986a-e66157f1de74)
-
 
 
 ## 컨테이너 인프라 설계 및 구성
 
 #### 컨테이너 자동확장 - HPA
 
+- 컨테이너에 autoscale 적용 (cpu percent: 10)
+- siege를 통해 부하를 발생했을 때, cpu에 따른 pod 갯수를 확인
+
+```
+kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
+```
+
+[cpu에 따른 replicas 증가]  
+![hpa_replicas](https://github.com/user-attachments/assets/028ea804-ac42-4d7f-98d3-335727defa27)
+  
+[replicas가 증가한 pod]  
+![hpa_pod](https://github.com/user-attachments/assets/c22660e8-0dd5-4a60-ac0a-05c10762e1a3)
+
 
 #### 컨테이너로부터 환경분리 - ConfigMap
 
+- 컨테이너에 configMap 기반으로 환경변수를 부여
+- Pod spec에 마운트
+- Pod 터미널에 진입하여 env 확인
+
+[configMap yaml]  
+![configMap yaml file](https://github.com/user-attachments/assets/c7ffb326-cd14-4fa6-8219-2401a5903eab)
+  
+[Pod spec]  
+![deploy에env설정](https://github.com/user-attachments/assets/50a743c3-f9ac-48b7-ac8c-811183aa7da1)
+  
+[Pod 터미널에서 env 확인]  
+![env_result](https://github.com/user-attachments/assets/aac1f9bc-0385-43e1-be98-1ae3289762ca)
+
 
 #### 클라우드스토리지 활용 - PVC
+
+- PV, PVC 기반으로 클라우드 스토리지 활용.
+- PVC를 선언하고, pod spec에 마운팅.
+- 실제 확보된 스토리지 경로를 확인.
+
+[PVC 선언]  
+![pvc yaml file](https://github.com/user-attachments/assets/72ff5e83-6279-418a-b1f2-7a972470ebdf)
+  
+[Pod spec에 마운팅]  
+![pod_pvc](https://github.com/user-attachments/assets/486f8c75-233a-4476-bdaf-ffb82160ec79)
+![pod_volumeMount](https://github.com/user-attachments/assets/1d527835-a8bc-4122-9430-170d02d815fc)
+
+
+[확보된 스토리지]  
+![pvc result](https://github.com/user-attachments/assets/279bd7fd-5f4c-4430-b0b8-951e2a67b176)
 
 
 #### 셀프 힐링 / 무정지배포 - Readiness Probe
