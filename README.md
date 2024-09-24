@@ -149,6 +149,13 @@ kubectl autoscale deploy message --cpu-percent=10 --min=1 --max=3
 - Sidecar에서 retry를 하도록 설정
 - Tracing Server인 Jaeger에서 retry 확인
 
+> Istio add-on Dashboard 설치
+```
+mv samples/addons/loki.yaml samples/addons/loki.yaml.old
+curl -o samples/addons/loki.yaml https://raw.githubusercontent.com/msa-school/Lab-required-Materials/main/Ops/loki.yaml
+kubectl apply -f samples/addons
+```
+
 ```
 sidecar.istio.io/inject=true
 ```
