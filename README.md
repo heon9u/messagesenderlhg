@@ -1,79 +1,46 @@
-# 
+# RCS message
 
-## Model
-www.msaez.io/#/181188264/storming/message_sender-lhg
-
-## Before Running Services
-### Make sure there is a Kafka server running
-```
-cd kafka
-docker-compose up
-```
-- Check the Kafka messages:
-```
-cd infra
-docker-compose exec -it kafka /bin/bash
-cd /bin
-./kafka-console-consumer --bootstrap-server localhost:9092 --topic
-```
-
-## Run the backend micro-services
-See the README.md files inside the each microservices directory:
-
-- message
-- validator
-- device
-- dashboard
+## 클라우드 아키텍처 설계
 
 
-## Run API Gateway (Spring Gateway)
-```
-cd gateway
-mvn spring-boot:run
-```
-
-## Test by API
-- message
-```
- http :8088/messages id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" 
-```
-- validator
-```
- http :8088/validators id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" policyInfo="policyInfo" description="description" 
-```
-- device
-```
- http :8088/devices id="id" messageId="messageId" userContact="userContact" mno="mno" sendTime="sendTime" chatbotId="chatbotId" description="description" result="result" 
-```
-- dashboard
-```
-```
+### 클라우드 아키텍처 구성
 
 
-## Run the frontend
-```
-cd frontend
-npm i
-npm run serve
-```
 
-## Test by UI
-Open a browser to localhost:8088
+## Data Modeling / 서비스 분리 / 설계 역량
+### 도메인 분석 - 이벤트스토밍
 
-## Required Utilities
+## MSA개발 또는 개발 관리 역량
 
-- httpie (alternative for curl / POSTMAN) and network utils
-```
-sudo apt-get update
-sudo apt-get install net-tools
-sudo apt install iputils-ping
-pip install httpie
-```
+### 분산트랜잭션 - Saga
 
-- kubernetes utilities (kubectl)
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
+
+### 보상처리 - Compensation
+
+
+### 단일 진입점 - Gateway
+
+
+### 분산 데이터 프로젝션 - CQRS
+
+
+## 컨테이너 인프라 설계 및 구성
+
+### 컨테이너 자동확장 - HPA
+
+
+### 컨테이너로부터 환경분리 - ConfigMap
+
+
+### 클라우드스토리지 활용 - PVC
+
+
+### 셀프 힐링 / 무정지배포 - Readiness Probe
+
+
+### 서비스 메쉬 응용 - Mesh
+
+
+### 통합 모니터링 - Monitoring
 
 
