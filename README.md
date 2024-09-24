@@ -39,10 +39,10 @@ cd /bin
 
 #### 보상처리 - Compensation
 
-메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능\n
+메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능  
 [before]
 ![compensation_before](https://github.com/user-attachments/assets/dfe8b996-1cc7-43b6-9af8-afed6b917f72)
-\n
+  
 [after]
 ![compensation_after](https://github.com/user-attachments/assets/4a12c2b5-9814-4cf1-8db7-4330f8c3d108)
 
@@ -55,7 +55,7 @@ cd /bin
 
 [message - 8082]
 ![gateway-8082](https://github.com/user-attachments/assets/f569a72a-433e-4ce0-9e86-8e6517a7d85e)
-\n
+  
 [gateway - 8088]
 ![gateway-8088](https://github.com/user-attachments/assets/5c956a30-e216-4573-bd29-3ac7cfb25fb3)
 
