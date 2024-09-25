@@ -215,7 +215,9 @@ stage('Docker Build') {
   
 [acr에서 확인한 image tag]  
 ![cicd azure](https://github.com/user-attachments/assets/b9dd0477-0656-4804-894c-97fb3c9f8fb4)
-
-
+  
+[배포된 pod]  
+![cicd_pod_deploy](https://github.com/user-attachments/assets/9a0ae0d8-f974-4b19-91fc-1f60c0020c6a)
+  
 
 
