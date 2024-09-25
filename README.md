@@ -16,6 +16,8 @@
 2. 검증이 완료될 때마다 메시지를 전송.
 3. 메시지를 전송 혹은 실패할 때마다 이력에 저장.
 4. 전송한 메시지를 취소하는 기능.
+  
+![achitecture](https://github.com/user-attachments/assets/826c1415-718d-46dd-8da1-d244d6a5df1f)
 
 Aggregation: message / validator / device / dashboard
 ![RCS_Event Storming](https://github.com/user-attachments/assets/b8fcb83d-2e9a-4340-b773-0b230f6cd10a)
