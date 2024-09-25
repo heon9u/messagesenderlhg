@@ -1,6 +1,6 @@
 # RCS message
 
-## 클라우드 아키텍처 설계
+## ✔클라우드 아키텍처 설계
 ### 클라우드 아키텍처 구성
 
 실무에서 담당하고 있는 기업형 스마트메시지 RCS를 기반으로 클라우드 아키텍처를 설계.
@@ -11,7 +11,7 @@
   
 ![achitecture](https://github.com/user-attachments/assets/826c1415-718d-46dd-8da1-d244d6a5df1f)
     
-## Data Modeling / 서비스 분리 / 설계 역량
+## ✔Data Modeling / 서비스 분리 / 설계 역량
 ### 도메인 분석 - 이벤트스토밍
 
 1. 메시지를 전송할 때마다 검증을 진행.
@@ -24,7 +24,7 @@ Aggregation: message / validator / device / dashboard
 ![RCS_Event Storming](https://github.com/user-attachments/assets/b8fcb83d-2e9a-4340-b773-0b230f6cd10a)
 
   
-## MSA개발 또는 개발 관리 역량
+## ✔MSA개발 또는 개발 관리 역량
 
 ### 분산트랜잭션 - Saga
 
@@ -80,7 +80,7 @@ http DELETE localhost:8082/messages/1
 ![CQRS](https://github.com/user-attachments/assets/793a3949-1697-40ad-986a-e66157f1de74)
 
   
-## 컨테이너 인프라 설계 및 구성
+## ✔컨테이너 인프라 설계 및 구성
 ### 컨테이너 자동확장 - HPA
 
 - 컨테이너에 autoscale 적용 (cpu percent: 10)
@@ -191,7 +191,7 @@ sidecar.istio.io/inject=true
 ![monitoring_grafana](https://github.com/user-attachments/assets/352b02c5-de5e-4672-95be-9381b4dad635)
 
   
-## CI/CD(PIPELINE)
+## ✔CI/CD(PIPELINE)
 ### VM기반 AKS, ACR을 활용한 Jenkins pipeline
 
 - Azure의 VM에서 환경 설정 및 Jenkins 설치
