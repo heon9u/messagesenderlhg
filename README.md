@@ -37,12 +37,20 @@ cd /bin
 ./kafka-console-consumer --bootstrap-server http://localhost:9092 --topic messagesenderlhg --from-beginning
 ```
 
+```bash
+http POST localhost:8082/messages messageId="msg-1" userContact="01012341234" mno="kt" sendTime="2024-09-23" chatbotId="0801234567" description="test"
+```
+
 ![saga pattern](https://github.com/user-attachments/assets/14510971-4dd7-4c60-b608-47d370c040d0)
   
 ### 보상처리 - Compensation
 
 - 메시지를 발송 or 예약한 이후, 취소할 수 있는 cancel 기능
 - result를 "CANCEL"로 업데이트
+
+```bash
+http DELETE localhost:8082/messages/1
+```
 
 [before]  
 ![compensation_before](https://github.com/user-attachments/assets/dfe8b996-1cc7-43b6-9af8-afed6b917f72)
