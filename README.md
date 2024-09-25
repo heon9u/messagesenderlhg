@@ -191,7 +191,7 @@ sidecar.istio.io/inject=true
 ![monitoring_grafana](https://github.com/user-attachments/assets/352b02c5-de5e-4672-95be-9381b4dad635)
 
   
-## github webhook을 이용한 CI/CD
+## CI/CD(PIPELINE)
 ### VM기반 AKS, ACR을 활용한 Jenkins pipeline
 
 - Azure의 VM에서 환경 설정 및 Jenkins 설치
