@@ -170,7 +170,7 @@ sidecar.istio.io/inject=true
 ```
 
 [istio 설치]  
-![istio install](https://github.com/user-attachments/assets/e7a0a161-ff8d-4829-8668-757e1b716436)
+![istio_install_list](https://github.com/user-attachments/assets/c5bbb8bc-3b6a-4c9d-82ec-600b4702dab5)
   
 [message / siege에 Sidecar 적용]  
 ![istio_sidecar](https://github.com/user-attachments/assets/d775a357-5f8d-4038-831c-dd4550948e5c)
