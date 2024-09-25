@@ -76,7 +76,7 @@ http DELETE localhost:8082/messages/1
 
 - Create / Delete와 조회 역할을 나눠 부하 분산
 
-[myMessages - 8085]  
+[Dashboard - 8085]  
 ![CQRS](https://github.com/user-attachments/assets/793a3949-1697-40ad-986a-e66157f1de74)
 
   
